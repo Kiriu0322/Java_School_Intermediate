@@ -9,7 +9,7 @@ services:
       - 5432:5432
     volumes:
       - ./docker/db/initdb.d:/docker-entrypoint-initdb.d
-      - pg-data:/var/lib/postgresql/data # コンテナを起動時に、下記のボリューム をマウントする
+      - pg-data:/var/lib/postgresql/data # コンテナを起動時に、下記のボリュームをマウントする
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

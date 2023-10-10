@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/head :: head_fragment(title = 'ユーザー情報一覧', scripts = ~{::script}, links = ~{::link})"></head>
+
+<head th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
+  <title>ユーザ一覧</title>
+  <link href="/css/list.css" rel="stylesheet" />
+</head>
+
 <body>
   <div class="container">
-    <h1>ユーザー情報一覧</h1>
+    <h1>ユーザ情報一覧</h1>
     <div class="float-end">
       <a th:href="@{/user/add}" class="btn btn-primary">新規登録はこちら</a>
     </div>
@@ -20,17 +25,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr th:each="user : ${userlist}" th:object="${user}"     class="align-middle">
+        <tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
           <td th:text="*{userId}"></td>
           <td th:text="*{userName}"></td>
           <td th:text="*{mailAddress}"></td>
-          <td th:text="${#dates.format(user.updateDate, 'yyyy/MM/dd')}"></    td>
-          <td th:text="${#dates.format(user.createDate, 'yyyy/MM/dd')}"></    td>
-          <td th:text="${#dates.format(user.deleteDate, 'yyyy/MM/dd')}"></    td>
-          <td><a th:href="@{/user/{userId}(id=*{userId})}" class="btn     btn-secondary">詳細</a></td>
+          <td th:text="${#dates.format(user.updateDate, 'yyyy/MM/dd')}"></td>
+          <td th:text="${#dates.format(user.createDate, 'yyyy/MM/dd')}"></td>
+          <td th:text="${#dates.format(user.deleteDate, 'yyyy/MM/dd')}"></td>
+          <td><a th:href="@{/user/{id}(id=*{userId})}" class="btn btn-secondary">詳細</a></td>
         </tr>
       </tbody>
     </table>
   </div>
 </body>
+
 </html>
